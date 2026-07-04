@@ -12,8 +12,8 @@ jobs:
 
       - name: Build the app
         run: |
-          xcodebuild -project "UTM Snapshot Manager.xcodeproj" \
-          -scheme "UTM Snapshot Manager" \
+          xcodebuild -project "UTM Snapshot-Manager.xcodeproj" \
+          -scheme "UTM Snapshot-Manager" \
           -configuration Release \
           clean build \
           CONFIGURATION_BUILD_DIR="$(pwd)/build"
