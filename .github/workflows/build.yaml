@@ -22,8 +22,19 @@ jobs:
           CODE_SIGN_STYLE=Manual \
           DEVELOPMENT_TEAM=""
 
+      - name: Create DMG
+        run: |
+          mkdir -p dmg-staging
+          cp -R "build/UTM Snapshot-Manager.app" dmg-staging/
+          ln -s /Applications dmg-staging/Applications
+          hdiutil create \
+            -volname "UTM Snapshot Manager" \
+            -srcfolder dmg-staging \
+            -ov -format UDZO \
+            "UTM-Snapshot-Manager.dmg"
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: UTM-Snapshot-Manager-App
-          path: "build/UTM Snapshot-Manager.app"
+          name: UTM-Snapshot-Manager-DMG
+          path: "UTM-Snapshot-Manager.dmg"
